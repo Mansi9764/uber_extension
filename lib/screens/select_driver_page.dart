@@ -85,31 +85,60 @@ class SelectDriverPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Experience: $experience years', style: TextStyle(color: Colors.white70)),
-            Text('Rating: $rating', style: TextStyle(color: Colors.white70)),
+            Row(
+              children: [
+                _buildRatingStars(rating),
+                SizedBox(width: 5),
+                Text('$rating', style: TextStyle(color: Colors.white70)),
+              ],
+            ),
             Text('Miles Driven: $milesDriven', style: TextStyle(color: Colors.white70)),
             Text('Price per Mile: \$$pricePerMile', style: TextStyle(color: Colors.white70)),
           ],
         ),
         trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => BookingConfirmationPage(
-                carName: carName,
-                carPrice: carPrice,
-                startDate: startDate,
-                endDate: endDate,
-                driverName: driverName,
-                driverExperience: experience,
-                driverRating: rating,
-                driverMilesDriven: milesDriven,
-                driverPricePerMile: pricePerMile,
-              ),
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   // MaterialPageRoute(
+          //   //   builder: (context) => BookingConfirmationPage(
+          //   //     carName: carName,
+          //   //     carPrice: carPrice,
+          //   //     startDate: startDate,
+          //   //     endDate: endDate,
+          //   //     driverName: driverName,
+          //   //     driverExperience: experience,
+          //   //     driverRating: rating,
+          //   //     driverMilesDriven: milesDriven,
+          //   //     driverPricePerMile: pricePerMile,
+          //     ),
+          //   ),
+          // );
         },
       ),
+    );
+  }
+
+  Widget _buildRatingStars(double rating) {
+    int fullStars = rating.floor();
+    int halfStars = (rating - fullStars >= 0.5) ? 1 : 0;
+    int emptyStars = 5 - fullStars - halfStars;
+
+    return Row(
+      children: List.generate(
+        fullStars,
+        (index) => Icon(Icons.star, color: Colors.yellow, size: 16),
+      )..addAll(
+          List.generate(
+            halfStars,
+            (index) => Icon(Icons.star_half, color: Colors.yellow, size: 16),
+          ),
+        )..addAll(
+          List.generate(
+            emptyStars,
+            (index) => Icon(Icons.star_border, color: Colors.yellow, size: 16),
+          ),
+        ),
     );
   }
 }

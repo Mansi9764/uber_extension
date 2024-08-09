@@ -1,134 +1,96 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'add_card_details_page.dart'; // Import the new page
 
 class BookingConfirmationPage extends StatelessWidget {
-  final String carName;
-  final double carPrice;
-  final String startDate;
-  final String endDate;
-  final String driverName;
-  final int driverExperience;
-  final double driverRating;
-  final int driverMilesDriven;
-  final double driverPricePerMile;
+  final Map<String, dynamic> car;
+  final Map<String, String> driverDetails;
 
-  BookingConfirmationPage({
-    required this.carName,
-    required this.carPrice,
-    required this.startDate,
-    required this.endDate,
-    required this.driverName,
-    required this.driverExperience,
-    required this.driverRating,
-    required this.driverMilesDriven,
-    required this.driverPricePerMile,
-  });
+  BookingConfirmationPage({required this.car, required this.driverDetails});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Set the background color to white
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         elevation: 0,
+        iconTheme: IconThemeData(color: Colors.grey[700]),
         title: Text(
-          'Booking Confirmation',
-          style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+          'Booking Confirmed',
+          style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey[800]),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Icon(Icons.check_circle, color: Colors.green, size: 100), // Confirmation icon
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Your booking is confirmed!',
+                style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey[700]),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
+              _buildSectionTitle('Car Details'),
+              _buildCarDetails(),
+              SizedBox(height: 20),
+              _buildSectionTitle('Driver Details'),
+              _buildDriverDetails(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+    );
+  }
+
+  Widget _buildCarDetails() {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Image.asset(car['image'], width: 100, height: 60, fit: BoxFit.cover),
+            SizedBox(width: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(car['description'], style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+                SizedBox(height: 5),
+                Text("Seats: ${car['seats']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.white)),
+                Text("Luggage: ${car['luggage']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.white)),
+                Text("Price: \$${car['price']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.white)),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDriverDetails() {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Car Details',
-              style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            Text(
-              'Car: $carName',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            Text(
-              'Price: \$$carPrice per day',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Driver Details',
-              style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            Text(
-              'Driver: $driverName',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            Text(
-              'Experience: $driverExperience years',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            Text(
-              'Rating: $driverRating',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            Text(
-              'Miles Driven: $driverMilesDriven',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            Text(
-              'Price per Mile: \$$driverPricePerMile',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Booking Dates',
-              style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            Text(
-              'Start Date: $startDate',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            Text(
-              'End Date: $endDate',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
-            ),
-            SizedBox(height: 40),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddCardDetailsPage(
-                        carName: carName,
-                        carPrice: carPrice,
-                        startDate: startDate,
-                        endDate: endDate,
-                        driverName: driverName,
-                        driverExperience: driverExperience,
-                        driverRating: driverRating,
-                        driverMilesDriven: driverMilesDriven,
-                        driverPricePerMile: driverPricePerMile,
-                      ),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-                child: Text(
-                  'Confirm Booking',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            Text("Driver's Name: ${driverDetails['name']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
+            Text("Driver's License: ${driverDetails['license']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
+            Text("Contact Number: ${driverDetails['contact']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
           ],
         ),
       ),

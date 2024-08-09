@@ -23,23 +23,35 @@ class SuvListPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            _buildCarItem(context, 'Toyota Highlander', '5 seats, Automatic, Air Conditioning', 70.0),
-            _buildCarItem(context, 'Ford Explorer', '7 seats, Automatic, Air Conditioning', 75.0),
-            _buildCarItem(context, 'Honda Pilot', '8 seats, Automatic, Air Conditioning', 80.0),
-            _buildCarItem(context, 'Chevrolet Tahoe', '7 seats, Automatic, Air Conditioning', 85.0),
-            _buildCarItem(context, 'Nissan Pathfinder', '7 seats, Automatic, Air Conditioning', 78.0),
+            _buildCarItem(context, 'Toyota Highlander 2021', '5 seats, Automatic, Air Conditioning, Petrol', 70.0, 4.5),
+            _buildCarItem(context, 'Ford Explorer 2020', '7 seats, Automatic, Air Conditioning, Diesel', 75.0, 4),
+            _buildCarItem(context, 'Honda Pilot 2019', '8 seats, Automatic, Air Conditioning, Petrol', 80.0, 3),
+            _buildCarItem(context, 'Chevrolet Tahoe 2021', '7 seats, Automatic, Air Conditioning, Diesel', 85.0, 2),
+            _buildCarItem(context, 'Nissan Pathfinder 2018', '7 seats, Automatic, Air Conditioning, Petrol', 78.0, 4.5),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCarItem(BuildContext context, String carName, String description, double price) {
+  Widget _buildCarItem(BuildContext context, String carName, String description, double price, double rating) {
     return Card(
       color: Colors.grey[900],
       child: ListTile(
         title: Text(carName, style: GoogleFonts.lato(fontSize: 18, color: Colors.white)),
-        subtitle: Text('$description\n\$$price per day', style: TextStyle(color: Colors.white70)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('$description', style: TextStyle(color: Colors.white70)),
+            Row(
+              children: [
+                Text('\$$price per day', style: TextStyle(color: Colors.white70)),
+                SizedBox(width: 10),
+                _buildRatingStars(rating),
+              ],
+            ),
+          ],
+        ),
         trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
         onTap: () {
           Navigator.push(
@@ -55,6 +67,29 @@ class SuvListPage extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  Widget _buildRatingStars(double rating) {
+    int fullStars = rating.floor();
+    int halfStars = (rating - fullStars >= 0.5) ? 1 : 0;
+    int emptyStars = 5 - fullStars - halfStars;
+
+    return Row(
+      children: List.generate(
+        fullStars,
+        (index) => Icon(Icons.star, color: Colors.yellow, size: 16),
+      )..addAll(
+          List.generate(
+            halfStars,
+            (index) => Icon(Icons.star_half, color: Colors.yellow, size: 16),
+          ),
+        )..addAll(
+          List.generate(
+            emptyStars,
+            (index) => Icon(Icons.star_border, color: Colors.yellow, size: 16),
+          ),
+        ),
     );
   }
 }
