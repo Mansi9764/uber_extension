@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:uber_final/screens/cars_rental_page.dart';
+import 'package:uber_final/screens/Daily/cars_rental_page.dart';
+import 'package:uber_final/screens/extended_ride_options_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -63,7 +64,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildSuggestionItem(context, Icons.directions_car, 'Ride'),
-                  _buildSuggestionItem(context, Icons.car_rental, 'Rentals'),
+                  _buildSuggestionItem(context, Icons.car_rental, 'ChauffeurX'),
                   _buildSuggestionItem(context, Icons.airport_shuttle, 'Intercity'),
                   _buildSuggestionItem(context, Icons.event, 'Reserve'),
                 ],
@@ -135,10 +136,10 @@ class HomePage extends StatelessWidget {
   Widget _buildSuggestionItem(BuildContext context, IconData icon, String title) {
     return GestureDetector(
       onTap: () {
-        if (title == 'Rentals') {
+        if (title == 'ChauffeurX') {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CarRentalHomePage()), // Redirect to Book Car page
+             MaterialPageRoute(builder: (context) => ExtendedRideOptionsPage()),  // Redirect to Book Car page
           );
         }
       },
