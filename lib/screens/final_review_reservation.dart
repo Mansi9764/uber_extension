@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uber_final/screens/booking_confirmation_page.dart';
-import 'package:uber_final/screens/payments_page.dart';
+// import 'package:uber_final/screens/payments_page.dart';
 
 class ReviewReservationPage extends StatelessWidget {
   final Map<String, dynamic> car;
@@ -90,19 +90,19 @@ class ReviewReservationPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
   onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PaymentsPage(
-          car: car,
-          driverDetails: {
-            'name': 'John Doe', // Replace with actual driver details
-            'license': 'ABC123456',
-            'contact': '+1 234 567 8901',
-          },
-        ),
-      ),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => PaymentsPage(
+    //       car: car,
+    //       driverDetails: {
+    //         'name': 'John Doe', // Replace with actual driver details
+    //         'license': 'ABC123456',
+    //         'contact': '+1 234 567 8901',
+    //       },
+    //     ),
+    //   ),
+    // );
   },
           child: Text('Agree to terms'),
           style: ElevatedButton.styleFrom(

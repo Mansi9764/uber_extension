@@ -12,6 +12,7 @@ class _HourlyBookingPageState extends State<HourlyBookingPage> {
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
   String? _selectedPickupLocation;
+  String? _selectedDropOffLocation;
   bool _isLeaveLater = false; // Tracks if "Leave Later" is selected
 
   @override
@@ -34,7 +35,8 @@ class _HourlyBookingPageState extends State<HourlyBookingPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildLocationSelection('Pick-Up Location', _selectedPickupLocation, _selectPickupLocation),
+                  _buildLocationSelectionPick('Pick-Up Location', _selectedPickupLocation, _selectPickupLocation),
+                  _buildLocationSelectionDrop('Drop-Off Location', _selectedDropOffLocation, _selectDropOffLocation),
                   _buildSectionTitle('How much Time do you need?'),
                   _buildHourSelection(),
                   //_buildSectionTitle('Leave Now or Leave Later'),
@@ -169,7 +171,7 @@ class _HourlyBookingPageState extends State<HourlyBookingPage> {
     );
   }
 
-  Widget _buildLocationSelection(String title, String? location, Function onTap) {
+  Widget _buildLocationSelectionPick(String title, String? location, Function onTap) {
     return _buildSelectionContainer(
       title,
       location ?? 'Select Pick Up location',
@@ -178,6 +180,14 @@ class _HourlyBookingPageState extends State<HourlyBookingPage> {
     );
   }
 
+ Widget _buildLocationSelectionDrop(String title, String? location, Function onTap) {
+    return _buildSelectionContainer(
+      title,
+      location ?? 'Select Drop off location',
+      Icons.location_on,
+      onTap,
+    );
+  }
   Widget _buildDateSelection() {
     return _buildSelectionContainer(
       'Selected Date',
@@ -306,6 +316,12 @@ class _HourlyBookingPageState extends State<HourlyBookingPage> {
     String? location = await _showLocationInputDialog('Pick-Up Location');
     if (location != null) setState(() => _selectedPickupLocation = location);
   }
+ // Additional method for selecting drop-off location
+  void _selectDropOffLocation() async {
+    String? location = await _showLocationInputDialog('Drop-Off Location');
+    if (location != null) setState(() => _selectedDropOffLocation = location);
+  }
+
 
   Future<void> _selectDate() async {
     final DateTime? picked = await showDatePicker(

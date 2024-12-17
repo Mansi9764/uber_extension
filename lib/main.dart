@@ -1,26 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:uber_final/screens/Login.dart';
 import 'screens/home_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Uber-like App',
+//       theme: ThemeData(
+//         brightness: Brightness.dark,
+//         primarySwatch: Colors.blue,
+//         scaffoldBackgroundColor: Colors.black,
+//         textTheme: TextTheme(
+//           bodyLarge: TextStyle(color: Colors.white),
+//           bodyMedium: TextStyle(color: Colors.white),
+//           bodySmall: TextStyle(color: Colors.white),
+//         ),
+//       ),
+//       home: LoginScreen(),
+//     );
+//   }
+// }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Uber-like App',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.black,
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.white),
-          bodyMedium: TextStyle(color: Colors.white),
-          bodySmall: TextStyle(color: Colors.white),
+    return
+MaterialApp(
+  title: 'ChaufferX Login',
+  theme: ThemeData(
+    scaffoldBackgroundColor: Colors.white, // Ensures all screens have a white background by default
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white, backgroundColor: Colors.black, // Button text color
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
         ),
       ),
-      home: HomePage(),
-    );
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.black, // Text color for TextButtons
+      ),
+    ),
+  ),
+  home: LoginScreen(),
+);
   }
 }

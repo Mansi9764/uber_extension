@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uber_final/screens/Hours/find_drivers_page.dart';
+import 'package:uber_final/screens/PaymentService.dart';
+// import 'package:uber_final/screens/payments_page.dart';
 import 'start_ride_page.dart'; // Import the StartRidePage
 
 class BookingConfirmedPage extends StatelessWidget {
@@ -54,14 +56,14 @@ class BookingConfirmedPage extends StatelessWidget {
             SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                _navigateToAddRideLocation(context);
+                _navigateToPaymentPage(context);
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 backgroundColor: Colors.black,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               ),
-              child: Text('Add First Ride Location', style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+              child: Text('Proceed to Payment', style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
             ),
           ],
         ),
@@ -69,14 +71,10 @@ class BookingConfirmedPage extends StatelessWidget {
     );
   }
 
-  void _navigateToAddRideLocation(BuildContext context) {
+  void _navigateToPaymentPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => PlanYourRidePage(
-        initialPickupLocation: pickupLocation,
-        // initialDropoffLocation: '', // Initially empty, user can input drop-off location on the next page
-        // selectedDate: selectedDate,
-        // selectedTime: selectedTime,
-      ),
+      builder: (context) => PaymentPage(bookingAmount: totalPrice.toDouble()), 
     ));
   }
 }
+

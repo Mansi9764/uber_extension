@@ -19,7 +19,7 @@ class DriverPageHours extends StatelessWidget {
 
   final List<Driver> drivers = [
     Driver(
-      name: 'John Doe',
+      name: 'Stefan Doe',
       experience: 5,
       rating: 4.8,
       chargePerHour: 15,
@@ -29,7 +29,7 @@ class DriverPageHours extends StatelessWidget {
       languagesSpoken: ['English', 'Spanish'],
     ),
     Driver(
-      name: 'Jane Smith',
+      name: 'Damon Smith',
       experience: 8,
       rating: 4.9,
       chargePerHour: 20,

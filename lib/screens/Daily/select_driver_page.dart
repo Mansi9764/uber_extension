@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:uber_final/screens/Daily/payments_page_day.dart';
 import 'car.dart'; // Import the Car model
 import '../Driver.dart';
 
@@ -141,8 +142,18 @@ class DriverPageDays extends StatelessWidget {
         ),
         trailing: Icon(Icons.arrow_forward_ios),
         onTap: () {
-          // Handle driver selection, e.g., navigate to a booking confirmation page
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => PaymentPageDay(
+          //       car: car,
+          //       driver: driver,
+          //       numberOfDays: numberOfDays,
+          //     ),
+          //   ),
+          // );
         },
+
       ),
     );
   }

@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'CarMate',
+          'ChauffeurX',
           style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         actions: [
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildSuggestionItem(context, Icons.directions_car, 'Ride'),
-                  _buildSuggestionItem(context, Icons.car_rental, 'ChauffeurX'),
+                  _buildSuggestionItem(context, Icons.car_rental, 'Ride + Chauffeur'),
                   _buildSuggestionItem(context, Icons.airport_shuttle, 'Intercity'),
                   _buildSuggestionItem(context, Icons.event, 'Reserve'),
                 ],
@@ -136,7 +136,7 @@ class HomePage extends StatelessWidget {
   Widget _buildSuggestionItem(BuildContext context, IconData icon, String title) {
     return GestureDetector(
       onTap: () {
-        if (title == 'ChauffeurX') {
+        if (title == 'Ride + Chauffeur') {
           Navigator.push(
             context,
              MaterialPageRoute(builder: (context) => ExtendedRideOptionsPage()),  // Redirect to Book Car page
