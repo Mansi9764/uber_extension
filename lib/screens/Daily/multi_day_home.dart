@@ -120,6 +120,21 @@ class _CarRentalHomePageState extends State<CarRentalHomePage> {
                     onChanged: (value) {
                       _pickupLocation = value;
                     },
+                  ),SizedBox(height: 10),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Drop-off location',
+                      labelStyle: TextStyle(color: Colors.black),
+                      prefixIcon: Icon(Icons.location_pin, color: Colors.black),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    style: TextStyle(color: Colors.black),
+                    onChanged: (value) => _dropLocation = value,
                   ),
                   SizedBox(height: 5),
                   // Pickup Date
@@ -216,32 +231,6 @@ class _CarRentalHomePageState extends State<CarRentalHomePage> {
                 ],
               ),
             ),
-            // // Valet section
-            // Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Text(
-            //         'Valet is available in your city',
-            //         style: TextStyle(
-            //           fontSize: 18,
-            //           fontWeight: FontWeight.bold,
-            //           color: Colors.black,
-            //         ),
-            //       ),
-            //       SizedBox(height: 16),
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //         children: [
-            //           Image.asset('assets/valet_image_1.png', height: 100),
-            //           Image.asset('assets/valet_image_2.png', height: 100),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // // Find cars button with an arrow icon
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ElevatedButton(

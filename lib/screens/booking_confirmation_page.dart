@@ -10,9 +10,9 @@ class BookingConfirmationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set the background color to white
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.grey[700]),
         title: Text(
@@ -20,30 +20,42 @@ class BookingConfirmationPage extends StatelessWidget {
           style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey[800]),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Icon(Icons.check_circle, color: Colors.green, size: 100), // Confirmation icon
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/map.jpg"), // Specify your own background image path
+                fit: BoxFit.cover,
               ),
-              SizedBox(height: 20),
-              Text(
-                'Your booking is confirmed!',
-                style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey[700]),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 20),
-              _buildSectionTitle('Car Details'),
-              _buildCarDetails(),
-              SizedBox(height: 20),
-              _buildSectionTitle('Driver Details'),
-              _buildDriverDetails(),
-            ],
+            ),
           ),
-        ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Icon(Icons.check_circle, color: Colors.green, size: 100), // Confirmation icon
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Your booking is confirmed!',
+                    style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  _buildSectionTitle('Car Details'),
+                  _buildCarDetails(),
+                  SizedBox(height: 20),
+                  _buildSectionTitle('Driver Details'),
+                  _buildDriverDetails(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -51,7 +63,7 @@ class BookingConfirmationPage extends StatelessWidget {
   Widget _buildSectionTitle(String title) {
     return Text(
       title,
-      style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+      style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
     );
   }
 
@@ -64,15 +76,17 @@ class BookingConfirmationPage extends StatelessWidget {
           children: [
             Image.asset(car['image'], width: 100, height: 60, fit: BoxFit.cover),
             SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(car['description'], style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
-                SizedBox(height: 5),
-                Text("Seats: ${car['seats']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.white)),
-                Text("Luggage: ${car['luggage']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.white)),
-                Text("Price: \$${car['price']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.white)),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(car['description'], style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+                  SizedBox(height: 5),
+                  Text("Seats: ${car['seats']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.black)),
+                  Text("Luggage: ${car['luggage']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.black)),
+                  Text("Price: \$${car['price']}", style: GoogleFonts.lato(fontSize: 14, color: Colors.black)),
+                ],
+              ),
             ),
           ],
         ),
@@ -88,9 +102,9 @@ class BookingConfirmationPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Driver's Name: ${driverDetails['name']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
-            Text("Driver's License: ${driverDetails['license']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
-            Text("Contact Number: ${driverDetails['contact']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
+            Text("Driver's Name: ${driverDetails['name']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.black)),
+            Text("Driver's License: ${driverDetails['license']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.black)),
+            Text("Contact Number: ${driverDetails['contact']}", style: GoogleFonts.lato(fontSize: 16, color: Colors.black)),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uber_final/screens/Hours/hourly_booking.dart';
-import 'package:uber_final/screens/Daily/cars_rental_page.dart';
+import 'package:uber_final/screens/Daily/multi_day_home.dart';
 
 class ExtendedRideOptionsPage extends StatelessWidget {
   @override

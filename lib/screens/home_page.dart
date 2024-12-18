@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:uber_final/screens/Daily/cars_rental_page.dart';
+import 'package:uber_final/screens/Daily/multi_day_home.dart';
 import 'package:uber_final/screens/extended_ride_options_page.dart';
 
 class HomePage extends StatelessWidget {

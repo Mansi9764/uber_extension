@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uber_final/screens/Hours/find_drivers_page.dart';
 import 'package:uber_final/screens/PaymentService.dart';
-// import 'package:uber_final/screens/payments_page.dart';
-import 'start_ride_page.dart'; // Import the StartRidePage
+
 
 class BookingConfirmedPage extends StatelessWidget {
   final Map<String, dynamic> car;
@@ -73,8 +72,7 @@ class BookingConfirmedPage extends StatelessWidget {
 
   void _navigateToPaymentPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => PaymentPage(bookingAmount: totalPrice.toDouble()), 
+      builder: (context) => PaymentPage(), 
     ));
   }
 }
-

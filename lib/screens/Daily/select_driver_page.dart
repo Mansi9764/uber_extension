@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:uber_final/screens/Daily/payments_page_day.dart';
+import 'package:uber_final/screens/Daily/booking_summary_day.dart';
+import 'package:uber_final/screens/Driver.dart';
 import 'car.dart'; // Import the Car model
-import '../Driver.dart';
 
 class DriverPageDays extends StatelessWidget {
   final Car car;
@@ -21,8 +21,7 @@ class DriverPageDays extends StatelessWidget {
     required this.endTime,
     required this.pickupLocation,
     required this.dropLocation,
-    required this.numberOfDays, 
-    //required String shift, 
+    required this.numberOfDays,
   });
 
   final List<Driver> drivers = [
@@ -66,7 +65,27 @@ class DriverPageDays extends StatelessWidget {
       imagePath: 'assets/drivers/emily_davis.jpg',
       languagesSpoken: ['English', 'Italian'],
     ),
-    // Add more drivers as needed
+    Driver(
+      name: 'Carlos Rodriguez',
+      experience: 7,
+      rating: 4.5,
+      chargePerDay: 55,
+      gender: 'Male',
+      age: 38,
+      imagePath: 'assets/drivers/carlos_rodriguez.jpg',
+      languagesSpoken: ['Spanish', 'Portuguese'],
+    ),
+    Driver(
+      name: 'Liu Wei',
+      experience: 9,
+      rating: 4.8,
+      chargePerDay: 75,
+      gender: 'Male',
+      age: 42,
+      imagePath: 'assets/drivers/liu_wei.jpg',
+      languagesSpoken: ['Mandarin', 'English'],
+    ),
+    // You can add more drivers as needed
   ];
 
   @override
@@ -142,18 +161,23 @@ class DriverPageDays extends StatelessWidget {
         ),
         trailing: Icon(Icons.arrow_forward_ios),
         onTap: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => PaymentPageDay(
-          //       car: car,
-          //       driver: driver,
-          //       numberOfDays: numberOfDays,
-          //     ),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BookingDetailsPageDay(
+                car: car,
+                driver: driver,
+                startDate: startDate,
+                startTime: startTime,
+                endDate: endDate,
+                endTime: endTime,
+                pickupLocation: pickupLocation,
+                dropLocation: dropLocation,
+                numberOfDays: numberOfDays,
+              ),
+            ),
+          );
         },
-
       ),
     );
   }
